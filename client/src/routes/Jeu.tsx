@@ -7,20 +7,19 @@ function Jeu() {
     const [appid, setAppid] = useState("");
     let params = useParams();
 
-    const [api, setApi]=useState<any[]>([]);
+    const [api, setApi]=useState<any[]>([0]);
 
     useEffect(() => {
         console.log("a");
         
+
         let query = async function() {
             let body = await fetch(`http://localhost:3001/api/jeux/${params.appid}`, {
-                mode: "cors"
+                mode: "cors",
             });
 
             let json = await body.json();
 
-                
-            
             setApi(json);
         }
 
@@ -34,9 +33,13 @@ function Jeu() {
     
 
     return (
-        <>
-           <Header t={api} />
-        </>
+
+        
+        <div className="container">  
+
+            <Header api={api} /> 
+           
+        </div>
     );
 }
 

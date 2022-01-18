@@ -76,7 +76,8 @@ app.get('/api/jeux/:appid', (req, res) => {
                     name: value._source.name,
                     header_image: value._source.header_image,
                     release_date: value._source.release_date,
-                    platforms: value._source.platforms
+                    platforms: value._source.platforms,
+                    background: value._source.background
                 });
 
             });
