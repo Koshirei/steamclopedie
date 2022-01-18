@@ -52,32 +52,53 @@ app.get('/api/jeux/all', (req, res) => {
 });
 
 app.get('/api/jeux/:appid', (req, res) => {
-    client.search({
-        index: "steam",
-        body: {
-            query: {
-                match: {
-                    appid: req.params.appid
+    
+    let query = async function() {
+        let body = await client.search({
+            index: "steam-database-test",
+            body: {
+                query: {
+                    match: {
+                        appid: req.params.appid
+                    }
                 }
             }
+        });
+
+        let rep: any[] = await body.hits.hits;
+
+        if (body.hits.hits.length > 0) {
+
+            rep = rep.map((value) => {      
+                console.log(value);
+                          
+                return ({
+                    appid: value._source.appid,
+                    name: value._source.name,
+                    release_date: value._source.release_date,
+                    background: value._source.background,
+                    header_image: value._source.header_image,
+                    platforms: value._source.platforms,
+                    detailed_description: value._source.detailed_description,
+                    // about_the_game: value._source.about_the_game,
+                    screenshots: JSON.parse(value._source.screenshots.replace(/'/g, "\"")),
+                    // mac_requirements: "DANGER TRES DANGEREUX",
+                    // pc_requirements: "DANGER NE PAS UTILISER",
+                    minimum: value._source.minimum,
+                    // linux_requirements: "NE PAS UTILISER",
+
+                });
+            });
         }
-      
-    }, (error, response) => {
-        if (error) console.log(error);
-        
-        res.setHeader("Access-Control-Allow-Origin", "*");
 
-        if (response.hits != undefined) {
-
-            let json: any = response.hits.hits;
-
-            res.send(response.hits.hits[0]._source);
-        } 
        
-    });
+        
 
+        res.send(rep);
+    }
+
+    query();
 });
-
 
 app.get("/api/recherche", (req, res) => {
 
