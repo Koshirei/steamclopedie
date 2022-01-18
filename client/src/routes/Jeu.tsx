@@ -1,28 +1,41 @@
 import { useParams } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 
+import Header from "./Header";
+
 function Jeu() {
-    const [api, setApi] = useState<any>({});
+    const [appid, setAppid] = useState("");
     let params = useParams();
 
-    useEffect(() => {
-        fetch(`http://localhost:3001/api/jeux/${params.appid}`, {
-        mode: "cors",
-        })
-        .then((value) => {
-            // value.body
-            value.json().then((value) => {
-                // console.log(value);
+    const [api, setApi]=useState<any[]>([]);
 
-                setApi(value);
-                
+    useEffect(() => {
+        console.log("a");
+        
+        let query = async function() {
+            let body = await fetch(`http://localhost:3001/api/jeux/${params.appid}`, {
+                mode: "cors"
             });
+
+            let json = await body.json();
+
+                
+            
+            setApi(json);
+        }
+
+        query().catch((err) => {
+            console.log(err);
+            
         });
-    }, []);
+    }, [])
+
+    console.log();
+    
 
     return (
         <>
-            <p>{api.name}</p>
+           <Header t={api} />
         </>
     );
 }

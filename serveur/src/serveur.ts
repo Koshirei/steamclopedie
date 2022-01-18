@@ -53,7 +53,7 @@ app.get('/api/jeux/all', (req, res) => {
 
 app.get('/api/jeux/:appid', (req, res) => {
     client.search({
-        index: "steam",
+        index: "steam-database-test",
         body: {
             query: {
                 match: {
@@ -71,7 +71,17 @@ app.get('/api/jeux/:appid', (req, res) => {
 
             let json: any = response.hits.hits;
 
-            res.send(response.hits.hits[0]._source);
+            json=json.map((value:any)=>{
+                return ({
+                    name: value._source.name,
+                    header_image: value._source.header_image,
+                    release_date: value._source.release_date,
+                    platforms: value._source.platforms
+                });
+
+            });
+            console.log(json);
+            res.send(json);
         } 
        
     });
