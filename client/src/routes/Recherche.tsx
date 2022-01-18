@@ -33,7 +33,18 @@ function Recherche(props: RechercheProps) {
 
         let query  = async function() {
 
-            let res = await fetch(`http://localhost:3001/api/recherche?page=${searchParams.get("page")}&name=${searchParams.get("name")}`, {mode: "cors"});
+            let name: any = searchParams.get("name");
+            let release_date: any = searchParams.get("release_date");
+            let developer: any = searchParams.get("developer");
+            let publisher: any = searchParams.get("publisher");
+            let platforms: any = searchParams.get("platforms");
+            let required_age: any = searchParams.get("required_age");
+            let categories: any = searchParams.get("categories");
+            let genres: any = searchParams.get("genres");
+            let users_tags: any = searchParams.get("users_tags");
+            let positive_reviews: any = searchParams.get("positive_reviews");
+
+            let res = await fetch(`http://localhost:3001/api/recherche?page=${page}&name=${name}&release_date=${release_date}&developer=${developer}&publisher=${publisher}&platforms=${platforms}&required_age=${required_age}&categories=${categories}&genres=${genres}&users_tags=${users_tags}&positive_reviews=${positive_reviews}`, {mode: "cors"});
             let json = await res.json();
             console.log(json);
             
@@ -60,10 +71,10 @@ function Recherche(props: RechercheProps) {
         let release_date: any = document.getElementById("release_date");
         let developer: any = document.getElementById("developer");
         let publisher: any = document.getElementById("publisher");
-        let plateform: any = document.getElementById("plateform");
-        let minimum_age: any = document.getElementById("minimum_age");
-        let category: any = document.getElementById("category");
-        let type: any = document.getElementById("type");
+        let platforms: any = document.getElementById("platforms");
+        let required_age: any = document.getElementById("required_age");
+        let categories: any = document.getElementById("categories");
+        let genres: any = document.getElementById("genres");
         let users_tags: any = document.getElementById("users_tags");
         let positive_reviews: any = document.getElementById("positive_reviews");
 
@@ -75,7 +86,7 @@ function Recherche(props: RechercheProps) {
         
         let query  = async function() {
             // let res = await fetch(`http://localhost:3001/api/recherche?page=${page}&demande=${demande}`, {
-            let res = await fetch(`http://localhost:3001/api/recherche?page=${page}&name=${name.value}&release_date=${release_date.value}&developer=${developer.value}&publisher=${publisher.value}&plateform=${plateform.value}&minimum_age=${minimum_age.value}&category=${category.value}&type=${type.value}&users_tags=${users_tags.value}&positive_reviews=${positive_reviews.value}`, {
+            let res = await fetch(`http://localhost:3001/api/recherche?page=${page}&name=${name.value}&release_date=${release_date.value}&developer=${developer.value}&publisher=${publisher.value}&platforms=${platforms.value}&required_age=${required_age.value}&categories=${categories.value}&genres=${genres.value}&users_tags=${users_tags.value}&positive_reviews=${positive_reviews.value}`, {
                 mode: "cors",
                 method: "GET",
             });
@@ -95,10 +106,10 @@ function Recherche(props: RechercheProps) {
                 release date :           <input id="release_date" type="date"></input><br></br>
                 developer :              <input id="developer" type="text"></input><br></br>
                 publisher :              <input id="publisher" type="text"></input><br></br>
-                plateform :              <input id="plateform" type="text"></input><br></br>
-                minimum age :            <input id="minimum_age" type="text"></input><br></br>
-                category :               <input id="category" type="text"></input><br></br>
-                type :                   <input id="type" type="text"></input><br></br>
+                platforms :              <input id="platforms" type="text"></input><br></br>
+                minimum age :            <input id="required_age" type="text"></input><br></br>
+                categories :               <input id="categories" type="text"></input><br></br>
+                genres :                   <input id="genres" type="text"></input><br></br>
                 users tags :             <input id="users_tags" type="text"></input><br></br>
                 % of positive review :   <input id="positive_reviews" type="text"></input><br></br>
                                          <input type="submit" value="Search" onClick={update}></input>

@@ -81,30 +81,40 @@ app.get('/api/jeux/:appid', (req, res) => {
 
 app.get("/api/recherche", (req, res) => {
 
-    // console.log(req.query);
+    let page: any = req.query.page;   
     
+    let q: any = req.query;
 
-    let page: any = req.query.page;
-    // console.log(page);
     
-    req.query.release_date = "2000-01-01";
-    console.log(req.query.release_date);
-
-    // console.log(date);
+     
+    let vide = 1;
     
+    for (let key in req.query) {
+        if (req.query[key] == "null") {
+            req.query[key] = "";
+        }
+        
+        if (key != "page" && req.query[key] != "") {
+            vide = 0;
+        }
+    }
 
+    console.log(req.query);
+
+    if (req.query.release_date === "" || req.query.release_date === undefined || req.query.release_date === "null") {
+        req.query.release_date = "2000-01-01"
+    }
 
     if (page === "null" || page === "") {
         page = 1;
     }
 
     let name = req.query.name;
-
-    
+   
     let query = async function() {
         let body;
         
-        /* if (name === "null") {
+        if (vide) {
             body = await client.search({
                 index: "steam-database-test",
                 size: 25,
@@ -122,7 +132,7 @@ app.get("/api/recherche", (req, res) => {
                
             });
 
-        } else { */
+        } else { 
             body = await client.search({
                 index: "steam-database-test",
                 size: 50,
@@ -140,10 +150,10 @@ app.get("/api/recherche", (req, res) => {
                                 {match: {release_date: req.query.release_date}},
                                 {match: {developer: req.query.developer}},
                                 {match: {publisher: req.query.publisher}},
-                                {match: {platforms: req.query.plateform}},
-                                {match: {minimum_age: req.query.minimum_age}},
-                                {match: {category: req.query.category}},
-                                {match: {type: req.query.type}},
+                                {match: {platforms: req.query.platforms}},
+                                {match: {required_age: req.query.required_age}},
+                                {match: {categories: req.query.categories}},
+                                {match: {genres: req.query.genres}},
                                 {match: {users_tags: req.query.users_tags}},
                                 {match: {positive_reviews: req.query.positive_reviews}},
                             ]
@@ -156,7 +166,7 @@ app.get("/api/recherche", (req, res) => {
                     }],          
                 },
             });
-        // }
+        }
         
 
         let rep: any[] = body.hits.hits;
