@@ -105,9 +105,14 @@ app.get("/api/recherche", (req, res) => {
         req.query.release_date = "2000-01-01"
     }
 
+    console.log("page " + page);
+
     if (page === "null" || page === "") {
         page = 1;
     }
+
+    console.log("page " + page);
+    
 
     let name = req.query.name;
    
@@ -136,7 +141,7 @@ app.get("/api/recherche", (req, res) => {
             body = await client.search({
                 index: "steam-database-test",
                 size: 50,
-                from: (page - 1) * 50,
+                from: (page - 1) * 25,
                 body: {
                     query: {
                         bool: {
@@ -183,6 +188,56 @@ app.get("/api/recherche", (req, res) => {
                     positive_ratings: value._source.positive_ratings,
                     background: value._source.background,
                     header_image: value._source.header_image
+                });
+            });
+        }
+
+        res.send(rep);
+    }
+
+    query();
+});
+
+app.get("/api/fuzzysearch/", (req, res) => {
+    let name = req.query.name;
+
+    let query = async function() {
+        let body;
+        
+        body = await client.search({
+            index: "steam-database-test",
+            size: 5,
+            body: {
+                query: {
+                    fuzzy: {
+                        name: {
+                            value: name,
+                            fuzziness: "AUTO"
+                        }
+                    }
+                },
+                sort: [{
+                    // appid: {
+                    //     order: "asc"
+                    // }
+                }],          
+            },
+        });
+        
+        let rep: any[] = body.hits.hits;
+
+        if (body.hits.hits.length > 0) {
+
+            rep = rep.map((value) => {
+                // console.log(value);
+                
+                return ({
+                    // appid: value._source.appid,
+                    name: value._source.name,
+                    // release_date: value._source.release_date,
+                    // positive_ratings: value._source.positive_ratings,
+                    // background: value._source.background,
+                    // header_image: value._source.header_image
                 });
             });
         }
