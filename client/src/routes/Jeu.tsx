@@ -23,11 +23,14 @@ function Jeu() {
 
             let json = await body.json();
        
-            
+            document.body.style.backgroundImage=`url(${json[0].background}) `; 
+
             setData(json);
             // setData([{a: "a"}]);
 
         }
+
+        
 
         query().catch((err) => {
             console.log(err);
@@ -42,12 +45,18 @@ function Jeu() {
 
 
     return (
-        <>      
+        <div className="container">      
 
             <Header api={data} />
-            <Body api={data} />
 
-        </>
+            <div id="page_content">
+                <Body api={data} />
+
+                <div id="side_bar">
+                    <p>SIDE BAR</p>
+                </div>
+            </div>
+        </div>
     );
 }
 

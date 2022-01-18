@@ -1,0 +1,18 @@
+#page_content{
+    display:grid;
+    grid-template-columns:  1fr 400px;
+    color:white;
+}
+#body p{
+    text-align: justify;
+}
+#description{text-align: justify;}
+
+#screenshots_grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 4px;
+}
+#screenshots_grid img{
+    width:100%;
+}
