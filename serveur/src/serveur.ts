@@ -15,7 +15,7 @@ app.get('/api/jeux/all', (req, res) => {
     
     let query = async function() {
         const body = await client.search({
-            index: "steam-database-test",
+            index: "steam-database",
             size: 50,
             body: {
                 query: {
@@ -55,7 +55,7 @@ app.get('/api/jeux/:appid', (req, res) => {
     
     let query = async function() {
         let body = await client.search({
-            index: "steam-database-test",
+            index: "steam-database",
             body: {
                 query: {
                     match: {
@@ -107,7 +107,7 @@ app.get('/api/jeux/:appid', (req, res) => {
 });
 
 app.get("/api/recherche", (req, res) => {
-    console.log(req.query);
+  
     
     let page: any = req.query.page;   
     
@@ -133,8 +133,6 @@ app.get("/api/recherche", (req, res) => {
         req.query.release_date = "2000-01-01"
     }
 
-    console.log("page " + page);
-
     if (isNaN(page)) {
         page = 1;
     }
@@ -147,6 +145,8 @@ app.get("/api/recherche", (req, res) => {
         page = 1;
     }
 
+    console.log(req.query);
+
     console.log("page " + page);
     
 
@@ -157,7 +157,7 @@ app.get("/api/recherche", (req, res) => {
         
         if (vide) {
             body = await client.search({
-                index: "steam-database-test",
+                index: "steam-database",
                 size: 25,
                 from: (page - 1) * 25,
                 body: {
@@ -175,7 +175,7 @@ app.get("/api/recherche", (req, res) => {
 
         } else { 
             body = await client.search({
-                index: "steam-database-test",
+                index: "steam-database",
                 size: 50,
                 from: (page - 1) * 25,
                 body: {
@@ -246,7 +246,7 @@ app.get("/api/fuzzysearch/", (req, res) => {
         let body;
         
         body = await client.search({
-            index: "steam-database-test",
+            index: "steam-database",
             size: 5,
             body: {
                 query: {

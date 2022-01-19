@@ -35,7 +35,6 @@ button {
     background: #1B2838;
     color: rgba(255, 255, 255, 0.7);
     border: 0;
-    margin-top: 16px;
     border-radius: 4px;
 }
 
@@ -48,14 +47,17 @@ button {
     color: rgba(255, 255, 255, 0.7);
 }
 
-#pagination a {
+#menu a {
     display: inline-block;
     padding: 16px;
     background: #1B2838;
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     border-radius: 4px;
+    margin-right: 8px;
 }
+
+
 
 #toggle_advanced_search {
     display: inline-block;
@@ -74,4 +76,15 @@ button {
     text-decoration: none;
     border-radius: 4px;
     margin-top: 4px;
+}
+
+#recherche {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-gap: 8px;
+}
+
+#toggle_display,
+#pagination {
+    display: inline-block;
 }

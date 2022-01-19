@@ -13,39 +13,18 @@ function Recherche(props: RechercheProps) {
     const [advancedSearch, setAdvancedSearch] = useState("0");
 
     const [searchParams, setSearchParams] = useSearchParams();
-    // const page: any = searchParams.get("page")?.toString();
-    const [name, setName]: any = useState("");
-    const [release_date, setReleaseDate]: any = useState("");
-    const [developer, setDeveloper]: any = useState("");
-    const [publisher, setPublisher]: any = useState("");
-    const [platforms, setPlatforms]: any = useState("");
-    const [required_age, setRequiredAge]: any = useState("");
-    const [genres, setGenres]: any = useState("");
-    const [categories, setCategories]: any = useState("");
-    const [users_tags, setUsersTags]: any = useState("");
-    const [positive_reviews, setPositiveReviews]: any = useState("");
-
-
-    const [page, setPage]: any = useState(1);
+  
     const [date, setDate]: any = useState("");
     const [fuzzy, setFuzzy] = useState<any[]>([]);
 
-    // let page: any = searchParams.get("page");
-
     useEffect(() => {
-        setPage(searchParams.get("page"));
-
         let p: any = searchParams.get("page");
-
         let name: any = document.getElementById("name");
         name.value = searchParams.get("name");
-        setName(searchParams.get("name"));
 
 
         let query = async function () {
             let page = searchParams.get("page");
-
-
             let name: any = searchParams.get("name");
             let release_date: any = searchParams.get("release_date");
             let developer: any = searchParams.get("developer");
@@ -59,7 +38,6 @@ function Recherche(props: RechercheProps) {
 
             let res = await fetch(`http://localhost:3001/api/recherche?page=${page}&name=${name}&release_date=${release_date}&developer=${developer}&publisher=${publisher}&platforms=${platforms}&required_age=${required_age}&categories=${categories}&genres=${genres}&users_tags=${users_tags}&positive_reviews=${positive_reviews}`, { mode: "cors" });
             let json = await res.json();
-            console.log(json);
 
             props.resultat(json);
         }
@@ -67,7 +45,7 @@ function Recherche(props: RechercheProps) {
         query();
 
         if (isNaN(parseInt(p))) {
-            setPage(1);
+            // setPage(1);
         }
 
         toggleAdvancedSearch();
@@ -96,6 +74,14 @@ function Recherche(props: RechercheProps) {
         genres.value = searchParams.get("genres");
         users_tags.value = searchParams.get("users_tags");
         positive_reviews.value = searchParams.get("positive_reviews");
+
+        let inputs : any = document.getElementsByTagName("input");
+
+        for (let i=0; i<inputs.length; i++) {
+            if (inputs[i].type === "text" && inputs[i].value === "null") {
+                inputs[i].value = "";
+            }
+        }
     }, []);
 
     function update(e: React.MouseEvent<HTMLButtonElement>) {
@@ -112,19 +98,10 @@ function Recherche(props: RechercheProps) {
         let users_tags: any = document.getElementById("users_tags");
         let positive_reviews: any = document.getElementById("positive_reviews");
 
-        setName(name.value);
-        setReleaseDate(release_date.value);
-        setPublisher(publisher.value);
-        setDeveloper(developer.value);
-        setPlatforms(platforms.value);
-        setRequiredAge(required_age.value);
-        setCategories(categories.value);
-        setGenres(genres.value);
-        setUsersTags(users_tags.value);
-        setPositiveReviews(positive_reviews.value);
+       
 
 
-        setPage(1);
+        // setPage(1);
         // let demande: any = e.target;
         console.log(date);
 
@@ -170,8 +147,6 @@ function Recherche(props: RechercheProps) {
 
     function renderFuzzysearch() {
         return fuzzy.map((value) => {
-            console.log(value.name);
-
             return (<><a href={`?page=${1}&name=${value.name}`}>{value.name}</a><br></br></>);
         });
     }
@@ -202,11 +177,15 @@ function Recherche(props: RechercheProps) {
 
     return (
         <div id="search">
-            <a id="toggle_advanced_search" href="#" onClick={toggleAdvancedSearch}>Toggle advanced search</a>
-
             <form id="form" method="GET">
                 <input type="hidden" name="page" value="1"></input>
-                name :                   <input autoComplete="off" id="name" type="text" name="name" onKeyUp={fuzzysearch}></input>
+
+                <div id="recherche">
+                    <input autoComplete="off" id="name" type="text" name="name" onKeyUp={fuzzysearch}></input>
+                    <button type="submit" onClick={update}>Submit</button>
+                    <a id="toggle_advanced_search" href="#" onClick={toggleAdvancedSearch}>Toggle advanced search</a>
+                </div>
+                {/* name :                    */}
 
                 <div id="fuzzy_search">
                     {renderFuzzysearch()}
@@ -227,15 +206,15 @@ function Recherche(props: RechercheProps) {
                     <a id="reset_filters" href="#" onClick={resetFilters}>Reset filters</a>
                 </div>
                
-                <button type="submit" onClick={update}>Submit</button>
+                
                 
             </form>
 
 
-            <div id="pagination">
+            {/* <div id="pagination">
                 <a href={`/?page=${parseInt(page) - 1}&name=${name}&release_date=${release_date}&developer=${developer}&publisher=${publisher}&platforms=${platforms}&required_age=${required_age}&categories=${categories}&genres=${genres}&users_tags=${users_tags}&positive_reviews=${positive_reviews}`}>Page precédente</a>
                 <a href={`/?page=${parseInt(page) + 1}&name=${name}&release_date=${release_date}&developer=${developer}&publisher=${publisher}&platforms=${platforms}&required_age=${required_age}&categories=${categories}&genres=${genres}&users_tags=${users_tags}&positive_reviews=${positive_reviews}`}>Page suivante</a><br></br>
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import Navbar from "../components/Navbar";
 import Recherche from "../components/Recherche";
 import Tableau from "../components/Tableau";
 
@@ -9,17 +10,19 @@ function Accueil() {
     const [donnees, setDonnees] = useState<any[]>([]);
 
     function update(data: any[]): void {
-        console.log(data);
-
         setDonnees(data);
     }
 
     return (
-        <div className="container">
-            <Recherche resultat={update}/>
+        <>
+            <Navbar />
 
-            <Tableau donnees={donnees} />
-        </div>
+            <div className="container">
+                <Recherche resultat={update}/>
+
+                <Tableau donnees={donnees} />
+            </div>
+        </>
     );
 }
 

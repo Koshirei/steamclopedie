@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Body from "./Body";
+import Navbar from "../components/Navbar";
 
 function Jeu() {
     let params = useParams();
@@ -36,16 +37,20 @@ function Jeu() {
     console.log();
 
     return (
-        <div className="container">      
+        <>
+            <Navbar />
+     
+            <div className="container">      
 
-            <Header api={data} />
+                <Header api={data} />
 
-            <div id="page_content">
-                <Body api={data} />
+                <div id="page_content">
+                    <Body api={data} />
 
-                <Sidebar api={data} />
+                    <Sidebar api={data} />
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
