@@ -86,6 +86,11 @@ app.get('/api/jeux/:appid', (req, res) => {
                     // pc_requirements: "DANGER NE PAS UTILISER",
                     minimum: value._source.minimum,
                     // linux_requirements: "NE PAS UTILISER",
+                    short_description: value._source.short_description,
+                    developer: value._source.developer,
+                    publisher: value._source.publisher,
+                    positive_ratings: value._source.positive_ratings,
+                    negative_ratings: value._source.negative_ratings
 
                 });
             });

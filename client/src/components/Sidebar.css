@@ -1,0 +1,33 @@
+#sidebar {
+    margin-left: 16px;
+}
+
+.sidebar_block {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 16px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.sidebar_block * {
+    margin: 0;
+}
+
+#review-bar {
+    display: flex;
+}
+
+#review-bar_positive-ratings,
+#review-bar_negative-ratings {
+    padding: 4px;
+}
+
+#review-bar_positive-ratings {
+    background: green;
+    width: 50px;
+}
+
+#review-bar_negative-ratings {
+    flex: 1;
+    background: red;
+}

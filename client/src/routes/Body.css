@@ -1,8 +1,9 @@
 #page_content{
     display:grid;
-    grid-template-columns:  1fr 400px;
+    grid-template-columns:  1fr 300px;
     color:white;
 }
+
 #body p{
     text-align: justify;
 }

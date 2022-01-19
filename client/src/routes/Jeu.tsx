@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 
 import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 import Body from "./Body";
 
 function Jeu() {
@@ -24,8 +25,6 @@ function Jeu() {
 
         }
 
-        
-
         query().catch((err) => {
             console.log(err);
             
@@ -33,10 +32,6 @@ function Jeu() {
     }, [])
 
     console.log();
-    
-
-
-
 
     return (
         <div className="container">      
@@ -46,9 +41,7 @@ function Jeu() {
             <div id="page_content">
                 <Body api={data} />
 
-                <div id="side_bar">
-                    <p>SIDE BAR</p>
-                </div>
+                <Sidebar api={data} />
             </div>
         </div>
     );
