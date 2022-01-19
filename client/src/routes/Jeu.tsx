@@ -12,6 +12,8 @@ function Jeu() {
     let params = useParams();
 
     const [data, setData] = useState<any[]>([{}]);
+    
+
 
     useEffect(() => {
         let query = async function() {
@@ -21,24 +23,39 @@ function Jeu() {
 
             let json = await body.json();
        
-            
+            document.body.style.backgroundImage=`url(${json[0].background}) `; 
+
             setData(json);
             // setData([{a: "a"}]);
 
         }
+
+        
 
         query().catch((err) => {
             console.log(err);
             
         });
     }, [])
+
+    console.log();
     
+
+
+
+
     return (
         <div className="container">      
-         
-            <Header api={data} />
-            <Body api={data} />
 
+            <Header api={data} />
+
+            <div id="page_content">
+                <Body api={data} />
+
+                <div id="side_bar">
+                    <p>SIDE BAR</p>
+                </div>
+            </div>
         </div>
     );
 }

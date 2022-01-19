@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./Body.css";
 
 interface IApiProps {
     appid: string;
@@ -28,23 +29,27 @@ function Header(props: BodyProps) {
         
     }
 
-    function renderPlatforms() {
-        let a: any = props.api[0].platforms?.split(";");        
+    useEffect(()=>{
 
-        return a?.map((value: any) => {
-            return <p>{value}</p>;
-        });
-    }
+        let t:any=document.getElementById('description');
+        t.innerHTML=props.api[0].detailed_description;
+    })
 
     return (
-        <>
-            <p>{props.api[0].detailed_description}</p>
+        <div id="body">
+            
+        
+
+            <div id="description">
+                
+            </div>
             <p>{props.api[0].minimum}</p>
-            <img src={props.api[0].background}></img>
-            {renderPlatforms()}
+
+            <div id="screenshots_grid">
             {renderScreenshots()}
-           
-        </>
+        </div>
+            
+        </div>
     );
 }
 
