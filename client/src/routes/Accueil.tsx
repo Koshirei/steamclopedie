@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import Recherche from "./Recherche";
-import Tableau from "./Tableau";
+import Recherche from "../components/Recherche";
+import Tableau from "../components/Tableau";
 
 import "./Accueil.css";
 

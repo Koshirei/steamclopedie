@@ -7,7 +7,11 @@ function Sidebar(){
     let text="bonjour";
 
     return (
-        <p>{text}</p>
+        <div id="sidebar">
+            <div className="sidebar_block">
+
+            </div>
+        </div>
     );
 }
 

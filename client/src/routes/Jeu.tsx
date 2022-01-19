@@ -1,8 +1,13 @@
 import { useParams } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 
+<<<<<<< Updated upstream
 import Body from "./Body";
 import Header from "./Header";
+=======
+import Header from "../components/Header";
+import Body from "./Body";
+>>>>>>> Stashed changes
 
 function Jeu() {
     let params = useParams();
