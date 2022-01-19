@@ -212,7 +212,8 @@ app.get("/api/recherche", (req, res) => {
                                         name: {
                                             query: req.query.name,
                                             operator: "and",
-                                            zero_terms_query: "all"
+                                            zero_terms_query: "all",
+                                            fuzziness: "AUTO"
                                         }
                                     }
                                 },
@@ -230,7 +231,8 @@ app.get("/api/recherche", (req, res) => {
                                         developer: {
                                             query: req.query.developer,
                                             operator: "and",
-                                            zero_terms_query: "all"
+                                            zero_terms_query: "all",
+                                            fuzziness: "AUTO"
                                         }
                                     } 
                                 },
@@ -239,7 +241,8 @@ app.get("/api/recherche", (req, res) => {
                                         publisher: {
                                             query: req.query.publisher,
                                             operator: "and",
-                                            zero_terms_query: "all"
+                                            zero_terms_query: "all",
+                                            fuzziness: "AUTO"
                                         }
                                     } 
                                 },
@@ -248,7 +251,8 @@ app.get("/api/recherche", (req, res) => {
                                         platforms: {
                                             query: req.query.platforms,
                                             operator: "and",
-                                            zero_terms_query: "all"
+                                            zero_terms_query: "all",
+                                            fuzziness: "AUTO"
                                         }
                                     } 
                                 },
@@ -257,7 +261,8 @@ app.get("/api/recherche", (req, res) => {
                                         required_age: {
                                             query: req.query.required_age,
                                             operator: "and",
-                                            zero_terms_query: "all"
+                                            zero_terms_query: "all",
+                                            fuzziness: "AUTO"
                                         }
                                     } 
                                 },
@@ -266,7 +271,8 @@ app.get("/api/recherche", (req, res) => {
                                         categories: {
                                             query: req.query.categories,
                                             operator: "and",
-                                            zero_terms_query: "all"
+                                            zero_terms_query: "all",
+                                            fuzziness: "AUTO"
                                         }
                                     } 
                                 },
@@ -275,7 +281,8 @@ app.get("/api/recherche", (req, res) => {
                                         genres: {
                                             query: req.query.genres,
                                             operator: "and",
-                                            zero_terms_query: "all"
+                                            zero_terms_query: "all",
+                                            fuzziness: "AUTO"
                                         }
                                     } 
                                 },
@@ -284,7 +291,8 @@ app.get("/api/recherche", (req, res) => {
                                         steamspy_tags: {
                                             query: req.query.users_tags,
                                             operator: "and",
-                                            zero_terms_query: "all"
+                                            zero_terms_query: "all",
+                                            fuzziness: "AUTO"
                                         }
                                     } 
                                 },

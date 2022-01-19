@@ -180,14 +180,6 @@ function Recherche(props: RechercheProps) {
         }
     }
 
-<<<<<<< HEAD
-        useEffect(() => {
-
-        let test : any = document.getElementById('name')?.offsetWidth;
-        document.getElementById("fuzzy_search")!.style.width = test+"px";
-
-        });
-=======
     function platformsCheckboxes(e: any) {
         let gcheckbox: any = document.getElementById("gcheckbox");
         // console.log("a");
@@ -206,7 +198,6 @@ function Recherche(props: RechercheProps) {
         setRangeValue(e.target.value);
        
     }
->>>>>>> modification_query_accueil
 
     return (
         <div id="search">
@@ -226,17 +217,6 @@ function Recherche(props: RechercheProps) {
 
                 <div id="advanced_search">
                     
-<<<<<<< HEAD
-                    <p>release date :          <input id="release_date" type="date" name="release_date"></input></p>
-                    <p>developer :             <input id="developer" type="text" name="developer"></input></p>
-                    <p>publisher :             <input id="publisher" type="text" name="publisher"></input></p>
-                    <p>platforms :             <input id="platforms" type="text" name="platforms"></input></p>
-                    <p>minimum age :           <input id="required_age" type="text" name="minimum_age"></input></p>
-                    <p>categories :            <input id="categories" type="text" name="categories"></input></p>
-                    <p>genres :                <input id="genres" type="text" name="genres"></input></p>
-                    <p>users tags :            <input id="users_tags" type="text" name="users_tags"></input></p>
-                    <p>% of positive review :  <input id="positive_reviews" type="text" name="positive_reviews"></input></p>
-=======
                     Release date :          <input id="release_date" type="date" name="release_date"></input><br></br>
                     Developer :             <input id="developer" type="text" name="developer"></input><br></br>
                     Publisher :             <input id="publisher" type="text" name="publisher"></input><br></br>
@@ -266,7 +246,6 @@ function Recherche(props: RechercheProps) {
                     Genres :                <input id="genres" type="text" name="genres"></input><br></br>
                     Users tags :            <input id="users_tags" type="text" name="users_tags"></input><br></br>
                     % of positive review :  <input id="positive_reviews" type="range"  step="1" name="positive_reviews" onChange={rangeEvent}></input>{rangeValue}<br></br>
->>>>>>> modification_query_accueil
 
                     <a id="reset_filters" href="#" onClick={resetFilters}>Reset filters</a>
                 </div>
