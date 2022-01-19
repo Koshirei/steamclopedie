@@ -8,8 +8,6 @@ interface RechercheProps {
 };
 
 function Recherche(props: RechercheProps) {
-
-    const [advancedSearch, setAdvancedSearch] = useState("0");
     
     const [searchParams, setSearchParams] = useSearchParams();
     // const page: any = searchParams.get("page")?.toString();
@@ -68,8 +66,6 @@ function Recherche(props: RechercheProps) {
         if (isNaN(parseInt(p))) {
             setPage(1);
         } 
-
-        toggleAdvancedSearch();
 
     }, []);
 
@@ -149,22 +145,15 @@ function Recherche(props: RechercheProps) {
         });
     }
 
-    function toggleAdvancedSearch() {
-        let advanced_search: any = document.getElementById("advanced_search");
+    function renderPagination() {
+       
 
-        if (advancedSearch == "0") {
-            advanced_search.style.display = "none";
-            setAdvancedSearch("1");
-        } else {
-            setAdvancedSearch("0");
-            advanced_search.style.display = "block";
-        }
+
     }
+
 
     return (
         <div id="search">
-            <a id="toggle_advanced_search" href="#" onClick={toggleAdvancedSearch}>Toggle advanced search</a>
-
             <form>
                 name :                   <input id="name" type="text" onKeyUp={fuzzysearch}></input><br></br>
 
@@ -172,28 +161,22 @@ function Recherche(props: RechercheProps) {
                     {renderFuzzysearch()}
                 </div>
 
-
-
-                <div id="advanced_search">
-
-                    release date :           <input id="release_date" type="date"></input><br></br>
-                    developer :              <input id="developer" type="text"></input><br></br>
-                    publisher :              <input id="publisher" type="text"></input><br></br>
-                    platforms :              <input id="platforms" type="text"></input><br></br>
-                    minimum age :            <input id="required_age" type="text"></input><br></br>
-                    categories :               <input id="categories" type="text"></input><br></br>
-                    genres :                   <input id="genres" type="text"></input><br></br>
-                    users tags :             <input id="users_tags" type="text"></input><br></br>
-                    % of positive review :   <input id="positive_reviews" type="text"></input><br></br>
-                </div>
+                release date :           <input id="release_date" type="date"></input><br></br>
+                developer :              <input id="developer" type="text"></input><br></br>
+                publisher :              <input id="publisher" type="text"></input><br></br>
+                platforms :              <input id="platforms" type="text"></input><br></br>
+                minimum age :            <input id="required_age" type="text"></input><br></br>
+                categories :               <input id="categories" type="text"></input><br></br>
+                genres :                   <input id="genres" type="text"></input><br></br>
+                users tags :             <input id="users_tags" type="text"></input><br></br>
+                % of positive review :   <input id="positive_reviews" type="text"></input><br></br>
                                          <input type="submit" value="Search" onClick={update}></input>
             </form>
 
            
-            <div id="pagination">
-                <a href={`/?page=${parseInt(page) - 1}&name=${name}&release_date=${release_date}&developer=${developer}&publisher=${publisher}&platforms=${platforms}&required_age=${required_age}&categories=${categories}&genres=${genres}&users_tags=${users_tags}&positive_reviews=${positive_reviews}`}>Page precédente</a>
-                <a href={`/?page=${parseInt(page) + 1}&name=${name}&release_date=${release_date}&developer=${developer}&publisher=${publisher}&platforms=${platforms}&required_age=${required_age}&categories=${categories}&genres=${genres}&users_tags=${users_tags}&positive_reviews=${positive_reviews}`}>Page suivante</a><br></br>
-            </div>
+            
+            <a href={`/?page=${parseInt(page) - 1}&name=${name}&release_date=${release_date}&developer=${developer}&publisher=${publisher}&platforms=${platforms}&required_age=${required_age}&categories=${categories}&genres=${genres}&users_tags=${users_tags}&positive_reviews=${positive_reviews}`}>Page precédente</a>
+            <a href={`/?page=${parseInt(page) + 1}&name=${name}&release_date=${release_date}&developer=${developer}&publisher=${publisher}&platforms=${platforms}&required_age=${required_age}&categories=${categories}&genres=${genres}&users_tags=${users_tags}&positive_reviews=${positive_reviews}`}>Page suivante</a><br></br>
         </div>
     )
 }

@@ -1,20 +1,14 @@
 import { useParams } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 
-import Header from "./Header";
+import Header from "../components/Header";
 import Body from "./Body";
-
-import { json } from "stream/consumers";
-
-
 
 function Jeu() {
     let params = useParams();
 
     const [data, setData] = useState<any[]>([{}]);
     
-
-
     useEffect(() => {
         let query = async function() {
             let body = await fetch(`http://localhost:3001/api/jeux/${params.appid}`, {

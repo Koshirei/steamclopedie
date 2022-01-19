@@ -40,28 +40,10 @@ input[type="submit"] {
 }
 
 #fuzzy_search {
-    padding: 4px 0;;
+    padding: 16px 0;;
     
 }
 
 #fuzzy_search a {
     color: rgba(255, 255, 255, 0.7);
-}
-
-#pagination a {
-    display: inline-block;
-    padding: 16px;
-    background: #1B2838;
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-#toggle_advanced_search {
-    display: inline-block;
-    padding: 16px;
-    background: #1B2838;
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    border-radius: 4px;
 }
