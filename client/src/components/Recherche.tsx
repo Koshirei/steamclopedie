@@ -17,6 +17,8 @@ function Recherche(props: RechercheProps) {
     const [date, setDate]: any = useState("");
     const [fuzzy, setFuzzy] = useState<any[]>([]);
 
+    const [rangeValue, setRangeValue] = useState(0);
+
     useEffect(() => {
         let p: any = searchParams.get("page");
         let name: any = document.getElementById("name");
@@ -68,8 +70,8 @@ function Recherche(props: RechercheProps) {
         release_date.value = searchParams.get("release_date");
         developer.value = searchParams.get("developer");
         publisher.value = searchParams.get("publisher");
-        platforms.value = searchParams.get("platforms");
-        required_age.value = searchParams.get("required_age");
+        // platforms.value = searchParams.get("platforms");
+        // required_age.value = searchParams.get("required_age");
         categories.value = searchParams.get("categories");
         genres.value = searchParams.get("genres");
         users_tags.value = searchParams.get("users_tags");
@@ -82,6 +84,9 @@ function Recherche(props: RechercheProps) {
                 inputs[i].value = "";
             }
         }
+
+        
+        
     }, []);
 
     function update(e: React.MouseEvent<HTMLButtonElement>) {
@@ -175,12 +180,33 @@ function Recherche(props: RechercheProps) {
         }
     }
 
+<<<<<<< HEAD
         useEffect(() => {
 
         let test : any = document.getElementById('name')?.offsetWidth;
         document.getElementById("fuzzy_search")!.style.width = test+"px";
 
         });
+=======
+    function platformsCheckboxes(e: any) {
+        let gcheckbox: any = document.getElementById("gcheckbox");
+        // console.log("a");
+        if (e.target.checked) {
+            gcheckbox.value = gcheckbox.value + e.target.value + " ";
+            
+        } else {
+            gcheckbox.value = gcheckbox.value.replace(e.target.value + " ", "");
+            
+        }
+
+        console.log(gcheckbox.value);
+    }
+
+    function rangeEvent(e: any) {
+        setRangeValue(e.target.value);
+       
+    }
+>>>>>>> modification_query_accueil
 
     return (
         <div id="search">
@@ -200,6 +226,7 @@ function Recherche(props: RechercheProps) {
 
                 <div id="advanced_search">
                     
+<<<<<<< HEAD
                     <p>release date :          <input id="release_date" type="date" name="release_date"></input></p>
                     <p>developer :             <input id="developer" type="text" name="developer"></input></p>
                     <p>publisher :             <input id="publisher" type="text" name="publisher"></input></p>
@@ -209,14 +236,41 @@ function Recherche(props: RechercheProps) {
                     <p>genres :                <input id="genres" type="text" name="genres"></input></p>
                     <p>users tags :            <input id="users_tags" type="text" name="users_tags"></input></p>
                     <p>% of positive review :  <input id="positive_reviews" type="text" name="positive_reviews"></input></p>
+=======
+                    Release date :          <input id="release_date" type="date" name="release_date"></input><br></br>
+                    Developer :             <input id="developer" type="text" name="developer"></input><br></br>
+                    Publisher :             <input id="publisher" type="text" name="publisher"></input><br></br>
+
+                    <input id="gcheckbox" type="hidden" name="platforms" value=""></input>
+                    Platforms :             
+                                            <ul>
+
+                                            
+                                                <li><label><input type="checkbox"  value="windows" onClick={platformsCheckboxes}></input>Windows</label></li>
+                                                <li><label><input type="checkbox"  value="linux" onClick={platformsCheckboxes}></input>Linux</label></li>
+                                                <li><label><input  type="checkbox" value="mac" onClick={platformsCheckboxes}></input>Mac</label></li>
+                                            </ul>
+                                            <br></br>
+
+                    Minimum age :           
+
+                    <ul>
+                        <li><label><input type="radio"  value="3" name="required_age"></input>3</label></li>
+                        <li><label><input type="radio"  value="7" name="required_age"></input>7</label></li>
+                        <li><label><input type="radio"  value="12" name="required_age"></input>12</label></li>
+                        <li><label><input type="radio"  value="16" name="required_age"></input>16</label></li>
+                        <li><label><input type="radio"  value="18" name="required_age"></input>18</label></li>
+                    </ul>
+
+                    Categories :            <input id="categories"  type="text" name="categories"></input><br></br>
+                    Genres :                <input id="genres" type="text" name="genres"></input><br></br>
+                    Users tags :            <input id="users_tags" type="text" name="users_tags"></input><br></br>
+                    % of positive review :  <input id="positive_reviews" type="range"  step="1" name="positive_reviews" onChange={rangeEvent}></input>{rangeValue}<br></br>
+>>>>>>> modification_query_accueil
 
                     <a id="reset_filters" href="#" onClick={resetFilters}>Reset filters</a>
                 </div>
-               
-                
-                
             </form>
-
 
             {/* <div id="pagination">
                 <a href={`/?page=${parseInt(page) - 1}&name=${name}&release_date=${release_date}&developer=${developer}&publisher=${publisher}&platforms=${platforms}&required_age=${required_age}&categories=${categories}&genres=${genres}&users_tags=${users_tags}&positive_reviews=${positive_reviews}`}>Page precédente</a>
