@@ -14,7 +14,7 @@ interface IApiProps {
     mac_requirements: string;
     linux_requirements: string;
     pc_requirements:string;
-
+    movies:string;
 }
 
 interface BodyProps {
@@ -24,12 +24,18 @@ interface BodyProps {
 function Header(props: BodyProps) {
     
     function renderScreenshots() {
-        let b: any = props.api[0].screenshots
         
+        let b: any = props.api[0].screenshots;
         return b?.map((value: any) => {
             return <img src={value.path_thumbnail}></img>
             
         });
+        
+    }
+    function renderMovies(){
+        let a: any = props.api[0].movies;
+        console.log(a);
+        return 0
         
     }
 
@@ -41,7 +47,7 @@ function Header(props: BodyProps) {
         
         let t:any=document.getElementById('pc_requirements');
         t.innerHTML=props.api[0].pc_requirements;
-        if (t.innerHTML=="[]"){
+        if (t.innerHTML==="[]"){
             t.innerHTML="";
         }
     })
@@ -50,7 +56,7 @@ function Header(props: BodyProps) {
         
         let t:any=document.getElementById('pc_requirements');
         t.innerHTML=props.api[0].pc_requirements;
-        if (t.innerHTML=="[]"){
+        if (t.innerHTML==="[]"){
             t.innerHTML="There are no System Requirements for Windows";
         }
      }
@@ -58,7 +64,7 @@ function Header(props: BodyProps) {
         
         let t:any=document.getElementById('pc_requirements');
         t.innerHTML=props.api[0].mac_requirements;
-        if (t.innerHTML=="[]"){
+        if (t.innerHTML==="[]"){
             t.innerHTML="There are no System Requirements for Mac";
         }
      }
@@ -66,7 +72,7 @@ function Header(props: BodyProps) {
         
         let t:any=document.getElementById('pc_requirements');
         t.innerHTML=props.api[0].linux_requirements;
-        if (t.innerHTML=="[]"){
+        if (t.innerHTML==="[]"){
             t.innerHTML="There are no System Requirements for Linux";
         }
      }
@@ -76,15 +82,26 @@ function Header(props: BodyProps) {
     return (
         <div id="body">
             
+            <div id="screenshots_grid">
+            <video id="movies" controls>
+                    {renderMovies()}
+                </video>
+                {renderScreenshots()}
+            </div>
+            <div>
+            
+            </div>
+
             <div id="description"></div>
-            <p>{props.api[0].minimum}</p>
             <button onClick={setRequirementPc}>Windows</button>
             <button onClick={setRequirementMac}>Mac</button>
             <button onClick={setRequirementLinux}>Linux</button>
             <table className="requirement_table">
-                 <tr>
-                     <th>System Requirements</th>
-                 </tr>
+                <thead>
+                    <tr>
+                        <th>System Requirements</th>
+                    </tr>
+                </thead>
                  <tbody>
                      <tr>
                          <td id="pc_requirements"></td>
@@ -92,9 +109,7 @@ function Header(props: BodyProps) {
                  </tbody>
              </table>
 
-            <div id="screenshots_grid">
-            {renderScreenshots()}
-        </div>
+            
             
         </div>
     );
