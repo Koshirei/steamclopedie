@@ -175,6 +175,13 @@ function Recherche(props: RechercheProps) {
         }
     }
 
+        useEffect(() => {
+
+        let test : any = document.getElementById('name')?.offsetWidth;
+        document.getElementById("fuzzy_search")!.style.width = test+"px";
+
+        });
+
     return (
         <div id="search">
             <form id="form" method="GET">
@@ -193,15 +200,15 @@ function Recherche(props: RechercheProps) {
 
                 <div id="advanced_search">
                     
-                    release date :          <input id="release_date" type="date" name="release_date"></input><br></br>
-                    developer :             <input id="developer" type="text" name="developer"></input><br></br>
-                    publisher :             <input id="publisher" type="text" name="publisher"></input><br></br>
-                    platforms :             <input id="platforms" type="text" name="platforms"></input><br></br>
-                    minimum age :           <input id="required_age" type="text" name="minimum_age"></input><br></br>
-                    categories :            <input id="categories" type="text" name="categories"></input><br></br>
-                    genres :                <input id="genres" type="text" name="genres"></input><br></br>
-                    users tags :            <input id="users_tags" type="text" name="users_tags"></input><br></br>
-                    % of positive review :  <input id="positive_reviews" type="text" name="positive_reviews"></input><br></br>
+                    <p>release date :          <input id="release_date" type="date" name="release_date"></input></p>
+                    <p>developer :             <input id="developer" type="text" name="developer"></input></p>
+                    <p>publisher :             <input id="publisher" type="text" name="publisher"></input></p>
+                    <p>platforms :             <input id="platforms" type="text" name="platforms"></input></p>
+                    <p>minimum age :           <input id="required_age" type="text" name="minimum_age"></input></p>
+                    <p>categories :            <input id="categories" type="text" name="categories"></input></p>
+                    <p>genres :                <input id="genres" type="text" name="genres"></input></p>
+                    <p>users tags :            <input id="users_tags" type="text" name="users_tags"></input></p>
+                    <p>% of positive review :  <input id="positive_reviews" type="text" name="positive_reviews"></input></p>
 
                     <a id="reset_filters" href="#" onClick={resetFilters}>Reset filters</a>
                 </div>

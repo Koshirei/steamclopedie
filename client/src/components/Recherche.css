@@ -39,8 +39,14 @@ button {
 }
 
 #fuzzy_search {
-    padding: 4px 0;;
-    
+    padding: 4px 0;
+    margin-top:5px;
+    padding-left:15px;
+    position:absolute;
+    background-color: #323E4C;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    min-width: 1fr;
 }
 
 #fuzzy_search a {
@@ -57,7 +63,9 @@ button {
     margin-right: 8px;
 }
 
-
+#advanced_search{
+    padding-top:100px;
+}
 
 #toggle_advanced_search {
     display: inline-block;
