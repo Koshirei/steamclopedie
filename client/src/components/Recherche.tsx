@@ -1,3 +1,4 @@
+import { platform } from "os";
 import React, { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 
@@ -71,6 +72,30 @@ function Recherche(props: RechercheProps) {
 
         toggleAdvancedSearch();
 
+    }, []);
+
+    useEffect(() => {
+        let name: any = document.getElementById("name");
+        let release_date: any = document.getElementById("release_date");
+        let developer: any = document.getElementById("developer");
+        let publisher: any = document.getElementById("publisher");
+        let platforms: any = document.getElementById("platforms");
+        let required_age: any = document.getElementById("required_age");
+        let categories: any = document.getElementById("categories");
+        let genres: any = document.getElementById("genres");
+        let users_tags: any = document.getElementById("users_tags");
+        let positive_reviews: any = document.getElementById("positive_reviews");
+
+        name.value = searchParams.get("name");
+        release_date.value = searchParams.get("release_date");
+        developer.value = searchParams.get("developer");
+        publisher.value = searchParams.get("publisher");
+        platforms.value = searchParams.get("platforms");
+        required_age.value = searchParams.get("required_age");
+        categories.value = searchParams.get("categories");
+        genres.value = searchParams.get("genres");
+        users_tags.value = searchParams.get("users_tags");
+        positive_reviews.value = searchParams.get("positive_reviews");
     }, []);
 
     function update(e: React.MouseEvent<HTMLButtonElement>) {
