@@ -1,6 +1,6 @@
 #page_content{
     display:grid;
-    grid-template-columns:  1fr 400px;
+    grid-template-columns:  75% 25%;
     color:white;
 }
 #body p{
@@ -15,4 +15,8 @@
 }
 #screenshots_grid img{
     width:100%;
+}
+.requirement_table, .requirement_table td{
+    border:solid red 2px;
+    width: 100%;
 }
