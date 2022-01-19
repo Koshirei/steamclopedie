@@ -183,6 +183,7 @@ app.get("/api/recherche", (req, res) => {
                             must: [
                                 
                                 
+                                
                             ],
                             // certaines clées sont pas bonnes
                             should: [
@@ -198,12 +199,7 @@ app.get("/api/recherche", (req, res) => {
                                 {match: {positive_reviews: req.query.positive_reviews}},
                             ]
                         }
-                    },
-                    sort: [{
-                         appid: {
-                             order: "desc"
-                         }
-                    }],          
+                    }  
                 },
             });
         }
