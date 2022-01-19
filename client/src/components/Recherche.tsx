@@ -188,13 +188,25 @@ function Recherche(props: RechercheProps) {
         }
     }
 
+    function resetFilters() {
+        let inputs = document.getElementsByTagName("input");
+
+        for (let i=0; i<inputs.length; i++) {
+            console.log(inputs[i]);
+
+            if (inputs[i].type === "text") {
+                inputs[i].value = "";
+            }
+        }
+    }
+
     return (
         <div id="search">
             <a id="toggle_advanced_search" href="#" onClick={toggleAdvancedSearch}>Toggle advanced search</a>
 
             <form id="form" method="GET">
                 <input type="hidden" name="page" value="1"></input>
-                name :                   <input id="name" type="text" name="name" onKeyUp={fuzzysearch}></input><br></br>
+                name :                   <input id="name" type="text" name="name" onKeyUp={fuzzysearch}></input>
 
                 <div id="fuzzy_search">
                     {renderFuzzysearch()}
@@ -211,9 +223,12 @@ function Recherche(props: RechercheProps) {
                     genres :                <input id="genres" type="text" name="genres"></input><br></br>
                     users tags :            <input id="users_tags" type="text" name="users_tags"></input><br></br>
                     % of positive review :  <input id="positive_reviews" type="text" name="positive_reviews"></input><br></br>
+
+                    <a id="reset_filters" href="#" onClick={resetFilters}>Reset filters</a>
                 </div>
                
                 <button type="submit" onClick={update}>Submit</button>
+                
             </form>
 
 
