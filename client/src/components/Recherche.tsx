@@ -206,7 +206,7 @@ function Recherche(props: RechercheProps) {
 
             <form id="form" method="GET">
                 <input type="hidden" name="page" value="1"></input>
-                name :                   <input id="name" type="text" name="name" onKeyUp={fuzzysearch}></input>
+                name :                   <input autoComplete="off" id="name" type="text" name="name" onKeyUp={fuzzysearch}></input>
 
                 <div id="fuzzy_search">
                     {renderFuzzysearch()}
