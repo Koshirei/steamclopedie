@@ -17,3 +17,7 @@
 #screenshots_grid img{
     width:100%;
 }
+.requirement_table, .requirement_table td{
+    border:solid red 2px;
+    width: 100%;
+}

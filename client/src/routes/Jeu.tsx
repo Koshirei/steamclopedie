@@ -25,6 +25,8 @@ function Jeu() {
 
         }
 
+        
+
         query().catch((err) => {
             console.log(err);
             

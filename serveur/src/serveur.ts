@@ -82,15 +82,16 @@ app.get('/api/jeux/:appid', (req, res) => {
                     detailed_description: value._source.detailed_description,
                     // about_the_game: value._source.about_the_game,
                     screenshots: JSON.parse(value._source.screenshots.replace(/'/g, "\"")),
-                    // mac_requirements: "DANGER TRES DANGEREUX",
-                    // pc_requirements: "DANGER NE PAS UTILISER",
+                    mac_requirements:  value._source.mac_requirements,
+                    pc_requirements: value._source.pc_requirements,
                     minimum: value._source.minimum,
                     // linux_requirements: "NE PAS UTILISER",
                     short_description: value._source.short_description,
                     developer: value._source.developer,
                     publisher: value._source.publisher,
                     positive_ratings: value._source.positive_ratings,
-                    negative_ratings: value._source.negative_ratings
+                    negative_ratings: value._source.negative_ratings,
+                    linux_requirements: value._source.linux_requirements,
 
                 });
             });
