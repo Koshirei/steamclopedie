@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 
+import "./Recherche.css";
 
 interface RechercheProps {
     resultat: (data: any[]) => void;
@@ -152,9 +153,14 @@ function Recherche(props: RechercheProps) {
 
 
     return (
-        <>
+        <div id="search">
             <form>
                 name :                   <input id="name" type="text" onKeyUp={fuzzysearch}></input><br></br>
+
+                <div id="fuzzy_search">
+                    {renderFuzzysearch()}
+                </div>
+
                 release date :           <input id="release_date" type="date"></input><br></br>
                 developer :              <input id="developer" type="text"></input><br></br>
                 publisher :              <input id="publisher" type="text"></input><br></br>
@@ -167,13 +173,11 @@ function Recherche(props: RechercheProps) {
                                          <input type="submit" value="Search" onClick={update}></input>
             </form>
 
-            <div id="fuzzy_search">
-                {renderFuzzysearch()}
-            </div>
+           
             
             <a href={`/?page=${parseInt(page) - 1}&name=${name}&release_date=${release_date}&developer=${developer}&publisher=${publisher}&platforms=${platforms}&required_age=${required_age}&categories=${categories}&genres=${genres}&users_tags=${users_tags}&positive_reviews=${positive_reviews}`}>Page precédente</a>
             <a href={`/?page=${parseInt(page) + 1}&name=${name}&release_date=${release_date}&developer=${developer}&publisher=${publisher}&platforms=${platforms}&required_age=${required_age}&categories=${categories}&genres=${genres}&users_tags=${users_tags}&positive_reviews=${positive_reviews}`}>Page suivante</a><br></br>
-        </>
+        </div>
     )
 }
 

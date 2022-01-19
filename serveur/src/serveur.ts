@@ -52,14 +52,6 @@ app.get('/api/jeux/all', (req, res) => {
 });
 
 app.get('/api/jeux/:appid', (req, res) => {
-<<<<<<< HEAD
-    client.search({
-        index: "steam-database-test",
-        body: {
-            query: {
-                match: {
-                    appid: req.params.appid
-=======
     
     let query = async function() {
         let body = await client.search({
@@ -69,7 +61,6 @@ app.get('/api/jeux/:appid', (req, res) => {
                     match: {
                         appid: req.params.appid
                     }
->>>>>>> body_jeu
                 }
             }
         });
@@ -100,26 +91,6 @@ app.get('/api/jeux/:appid', (req, res) => {
             });
         }
 
-<<<<<<< HEAD
-        if (response.hits != undefined) {
-
-            let json: any = response.hits.hits;
-
-            json=json.map((value:any)=>{
-                return ({
-                    name: value._source.name,
-                    header_image: value._source.header_image,
-                    release_date: value._source.release_date,
-                    platforms: value._source.platforms,
-                    background: value._source.background
-                });
-
-            });
-            console.log(json);
-            res.send(json);
-        } 
-=======
->>>>>>> body_jeu
        
         
 

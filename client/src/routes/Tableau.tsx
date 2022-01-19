@@ -4,7 +4,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { isPrivateIdentifier } from "typescript";
 
 
-import "./Tableaux.css";
+import "./Tableau.css";
 
 interface DonneesTableau {
     appid: string,
@@ -40,8 +40,8 @@ function Tableau(props: TableauProps) {
             return (
                 <tr>
                     <td><a href={"/jeux/" + value.appid}>{value.name}</a></td>
-                    <td>{value.release_date}</td>
-                    <td>{value.positive_ratings}</td>
+                    <td className="release_date">{value.release_date}</td>
+                    <td className="positive_ratings">{value.positive_ratings}</td>
                     {/* <td><img src={value.header_image}></img></td> */}
                 </tr>
             );
@@ -68,7 +68,7 @@ function Tableau(props: TableauProps) {
     function renderGrid(donnees: any) {
         donnees = donnees.map((value: any) => {    
             return (
-                <img src={value.header_image}></img>
+                <a href={"/jeux/" + value.appid}><img src={value.header_image}></img></a>
             );
         });  
 
@@ -109,12 +109,12 @@ function Tableau(props: TableauProps) {
     
 
     return (
-        <>
-            <a href="#" onClick={toggleDisplay}>Toggle display</a>
+        <div id="table">
+            <a id="toggle_display" href="#" onClick={toggleDisplay}>Toggle display</a>
             
             {choose(props.donnees)}
             
-        </>
+        </div>
     );
 }
 

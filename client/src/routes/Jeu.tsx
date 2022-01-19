@@ -12,8 +12,6 @@ function Jeu() {
     let params = useParams();
 
     const [data, setData] = useState<any[]>([{}]);
-    
-
 
     useEffect(() => {
         let query = async function() {
@@ -34,20 +32,14 @@ function Jeu() {
             
         });
     }, [])
-
-    console.log();
     
-
-
-
-
     return (
-        <>      
-
+        <div className="container">      
+         
             <Header api={data} />
             <Body api={data} />
 
-        </>
+        </div>
     );
 }
 

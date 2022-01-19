@@ -1,0 +1,56 @@
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#table {
+    
+    margin-top: 16px;
+    padding: 32px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 16px;
+}
+
+#toggle_display {
+    display: inline-block;
+    background: #1B2838;
+    padding: 16px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 4px;
+}
+
+td, th, td a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+td {
+    padding: 4px 0;
+   
+}
+
+tr {
+    border-bottom: 2px solid #1B2838;
+   
+}
+
+#grille {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 4px;
+}
+
+#grille img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.release_date,
+.positive_ratings {
+    text-align: center;
+}
