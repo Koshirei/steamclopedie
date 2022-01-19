@@ -70,7 +70,7 @@ app.get('/api/jeux/:appid', (req, res) => {
         if (body.hits.hits.length > 0) {
 
             rep = rep.map((value) => {      
-                console.log(value);
+                
                           
                 return ({
                     appid: value._source.appid,
@@ -85,14 +85,13 @@ app.get('/api/jeux/:appid', (req, res) => {
                     mac_requirements:  value._source.mac_requirements,
                     pc_requirements: value._source.pc_requirements,
                     minimum: value._source.minimum,
-                    // linux_requirements: "NE PAS UTILISER",
                     short_description: value._source.short_description,
                     developer: value._source.developer,
                     publisher: value._source.publisher,
                     positive_ratings: value._source.positive_ratings,
                     negative_ratings: value._source.negative_ratings,
-                    linux_requirements: value._source.linux_requirements,
-
+                    linux_requirements: value._source.linux_requirements, 
+                    movies: value._source.linux_requirements
                 });
             });
         }
@@ -165,8 +164,8 @@ app.get("/api/recherche", (req, res) => {
                         match_all: {}
                     },
                     sort: [{
-                        appid: {
-                            order: "asc"
+                        positive_ratings: {
+                            order: "desc"
                         }
                     }]
                 },
@@ -201,9 +200,9 @@ app.get("/api/recherche", (req, res) => {
                         }
                     },
                     sort: [{
-                        // appid: {
-                        //     order: "asc"
-                        // }
+                         appid: {
+                             order: "desc"
+                         }
                     }],          
                 },
             });
