@@ -120,7 +120,7 @@ app.get("/api/recherche", (req, res) => {
         }
     }
 
-    console.log(req.query);
+    
 
     if (req.query.release_date === "" || req.query.release_date === undefined || req.query.release_date === "null") {
         req.query.release_date = "2000-01-01"
@@ -128,7 +128,15 @@ app.get("/api/recherche", (req, res) => {
 
     console.log("page " + page);
 
+    if (isNaN(page)) {
+        page = 1;
+    }
+
     if (page === "null" || page === "") {
+        page = 1;
+    }
+
+    if (page < 1) {
         page = 1;
     }
 
