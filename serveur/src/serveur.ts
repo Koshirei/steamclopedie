@@ -106,7 +106,8 @@ app.get('/api/jeux/:appid', (req, res) => {
 });
 
 app.get("/api/recherche", (req, res) => {
-
+    console.log(req.query);
+    
     let page: any = req.query.page;   
     
     let q: any = req.query;
@@ -229,7 +230,12 @@ app.get("/api/recherche", (req, res) => {
         res.send(rep);
     }
 
-    query();
+    query().catch(() => {
+        console.log("a");
+        res.send({erreur: "erreur"});
+        
+    });
+    
 });
 
 app.get("/api/fuzzysearch/", (req, res) => {
