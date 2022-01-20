@@ -167,7 +167,10 @@ app.get("/api/recherche", (req, res) => {
         page = 1;
     }
 
+    let pos: any = req.query.positive_reviews;
 
+    console.log(pos);
+    
 
     console.log("page " + page);
 
@@ -177,10 +180,16 @@ app.get("/api/recherche", (req, res) => {
 
     let name = req.query.name;
 
+ 
+    
+
     let query = async function () {
         let body;
 
         if (vide) {
+            console.log("ui");
+            
+
             body = await client.search({
                 index: "steam-database",
                 size: 25,
@@ -208,6 +217,23 @@ app.get("/api/recherche", (req, res) => {
                 body: {
                     query: {
                         bool: {
+                            "filter": {
+                                "script": {
+                                  "script": {
+                                    "lang": "painless",
+                                    "source": `
+                                      long p = doc['positive_ratings'].value;
+                                      long n = doc['negative_ratings'].value;
+                                      double moy =  (100 * p / (n + p)) ;
+                                      
+                                     moy >= ${req.query.positive_reviews}
+                                       
+                                     `
+                                  }
+                                }
+                            },
+                            
+
                             must: [
                                 {
                                     match: {
@@ -311,28 +337,58 @@ app.get("/api/recherche", (req, res) => {
                         }
                     },
                     
-                    
+                    "sort": {
+                        "_script": {
+                          "type": "number",
+                          "script": {
+                            "lang": "painless",
+                            "source": `
+                              long p = doc['positive_ratings'].value;
+                              long n = doc['negative_ratings'].value;
+                              double moy =  (100 * p / (n + p)) ;
+                              
+                              moy
+                           
+                            `
+                          },
+                          "order": "asc"
+                         
+                        }
+                      },
+                      "size": 10
+            
                 },
             });
         }
 
+       
+          
 
         let rep: any[] = body.hits.hits;
-
+        
         
 
         if (body.hits.hits.length > 0) {
 
             rep = rep.map((value) => {
 
+                // console.log(value._source.name);
+
+                
+
+                
+                
+                
+                
                 return ({
                     appid: value._source.appid,
                     name: value._source.name,
-                    release_date: "a",
+                    release_date: value._source.release_date,
                     positive_ratings: value._source.positive_ratings,
                     background: value._source.background,
                     header_image: value._source.header_image
                 });
+                
             });
         }
 
