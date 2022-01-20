@@ -75,7 +75,7 @@ function Recherche(props: RechercheProps) {
         categories.value = searchParams.get("categories");
         genres.value = searchParams.get("genres");
         users_tags.value = searchParams.get("users_tags");
-        positive_reviews.value = searchParams.get("positive_reviews");
+        // positive_reviews.value = searchParams.get("positive_reviews");
 
         let inputs : any = document.getElementsByTagName("input");
 
@@ -282,7 +282,7 @@ function Recherche(props: RechercheProps) {
                     Categories :            <input id="categories"  type="text" name="categories"></input><br></br>
                     Genres :                <input id="genres" type="text" name="genres"></input><br></br>
                     Users tags :            <input id="users_tags" type="text" name="users_tags"></input><br></br>
-                    % of positive review :  <input id="positive_reviews" type="range"  step="1" name="positive_reviews" onChange={rangeEvent}></input>{rangeValue}<br></br>
+                    {/* % of positive review :  <input id="positive_reviews" type="range"  step="1" name="positive_reviews" onChange={rangeEvent}></input>{rangeValue}<br></br> */}
 
                     <a id="reset_filters" href="#" onClick={resetFilters}>Reset filters</a>
                 </div>

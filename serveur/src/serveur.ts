@@ -323,24 +323,24 @@ class Server {
                                 }
                             },
                             
-                            "sort": {
-                                "_script": {
-                                "type": "number",
-                                "script": {
-                                    "lang": "painless",
-                                    "source": `
-                                    long p = doc['positive_ratings'].value;
-                                    long n = doc['negative_ratings'].value;
-                                    double moy =  (100 * p / (n + p)) ;
+                            // "sort": {
+                            //     "_script": {
+                            //     "type": "number",
+                            //     "script": {
+                            //         "lang": "painless",
+                            //         "source": `
+                            //         long p = doc['positive_ratings'].value;
+                            //         long n = doc['negative_ratings'].value;
+                            //         double moy =  (100 * p / (n + p)) ;
                                     
-                                    moy
+                            //         moy
                                 
-                                    `
-                                },
-                                "order": "asc"
+                            //         `
+                            //     },
+                            //     "order": "asc"
                                 
-                                }
-                            },
+                            //     }
+                            // },
                             "size": 10
                     
                         },
