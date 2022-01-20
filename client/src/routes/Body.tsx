@@ -27,16 +27,8 @@ function Header(props: BodyProps) {
         
         let b: any = props.api[0].screenshots;
         return b?.map((value: any) => {
-            return <img src={value.path_thumbnail}></img>
-            
+            return <img src={value.path_thumbnail}></img> 
         });
-        
-    }
-    function renderMovies(){
-        let a: any = props.api[0].movies;
-        console.log(a);
-        return 0
-        
     }
 
     useEffect(()=>{
@@ -44,48 +36,74 @@ function Header(props: BodyProps) {
         t.innerHTML=props.api[0].detailed_description;
     });
     useEffect(()=>{
-        
-        let t:any=document.getElementById('pc_requirements');
-        t.innerHTML=props.api[0].pc_requirements;
-        if (t.innerHTML==="[]"){
-            t.innerHTML="";
-        }
-    })
+        {setRequirementPc()}
+    });
 
     function setRequirementPc(){
         
         let t:any=document.getElementById('pc_requirements');
         t.innerHTML=props.api[0].pc_requirements;
+        let a:any=document.getElementById('button_windows');
+        {changeButtonColor(a)}
         if (t.innerHTML==="[]"){
             t.innerHTML="There are no System Requirements for Windows";
+        }
+        else{
+            {requirement_emptying(t)}
         }
      }
      function setRequirementMac(){
         
         let t:any=document.getElementById('pc_requirements');
         t.innerHTML=props.api[0].mac_requirements;
+        let a:any=document.getElementById('button_mac');
+        {changeButtonColor(a)}
         if (t.innerHTML==="[]"){
             t.innerHTML="There are no System Requirements for Mac";
+        }
+        else{
+            {requirement_emptying(t)}
         }
      }
      function setRequirementLinux(){
         
         let t:any=document.getElementById('pc_requirements');
         t.innerHTML=props.api[0].linux_requirements;
+        let a:any=document.getElementById('button_linux');
+        {changeButtonColor(a)}
         if (t.innerHTML==="[]"){
             t.innerHTML="There are no System Requirements for Linux";
         }
+        else{
+            {requirement_emptying(t)}
+        }
      }
 
+     function requirement_emptying(t:any){
+        t.innerHTML=t.innerHTML.replaceAll("{\'minimum\': \'", "  ");
+        t.innerHTML=t.innerHTML.replaceAll("\', \'recommended\': \'", "  ");
+        t.innerHTML=t.innerHTML.replaceAll("\\t", "");
+        t.innerHTML=t.innerHTML.replaceAll("\\n", "");
+        t.innerHTML=t.innerHTML.replaceAll("\\r", "");
+        t.innerHTML=t.innerHTML.replaceAll("\'}", "");
+     }
+
+     function changeButtonColor(a:any){
+        let b:any = document.getElementById('button_windows');
+        let c:any = document.getElementById('button_mac');
+        let d:any = document.getElementById('button_linux');
+        b.style.backgroundColor="#1B2838";
+        c.style.backgroundColor="#1B2838";
+        d.style.backgroundColor="#1B2838";
+        a.style.backgroundColor="#2c64a3";
+    }
     
     
     return (
         <div id="body">
             
             <div id="screenshots_grid">
-            <video id="movies" controls>
-                    {renderMovies()}
-                </video>
+                {/* <div id="img_full">{mainScreenshot()}</div> */}
                 {renderScreenshots()}
             </div>
             <div>
@@ -93,9 +111,11 @@ function Header(props: BodyProps) {
             </div>
 
             <div id="description"></div>
-            <button onClick={setRequirementPc}>Windows</button>
-            <button onClick={setRequirementMac}>Mac</button>
-            <button onClick={setRequirementLinux}>Linux</button>
+            <div className="requirement_switch">
+            <button id="button_windows" onClick={setRequirementPc}>Windows</button>
+            <button id="button_mac" onClick={setRequirementMac}>Mac</button>
+            <button id="button_linux" onClick={setRequirementLinux}>Linux</button>
+            </div>
             <table className="requirement_table">
                 <thead>
                     <tr>
@@ -109,7 +129,7 @@ function Header(props: BodyProps) {
                  </tbody>
              </table>
 
-            
+            <div id="end_of_page_void"></div>
             
         </div>
     );

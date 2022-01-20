@@ -1,26 +1,88 @@
+button:hover{
+    cursor: pointer;
+}
+
 #page_content{
     display:grid;
-    grid-template-columns:  1fr 300px;
+    grid-template-columns:  1fr 15vw;
     color:white;
 }
 
 #body p{
     text-align: justify;
 }
-#description{text-align: justify;}
+
+#description, 
+#pc_requirements{
+    text-align: justify;
+}
+
+#description img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top:20px;
+    
+}
+
+#pc_requirements, 
+.requirement_table th{
+    padding: 10px 10px 10px 10px;
+}
 
 #screenshots_grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 4px;
 }
+
 #screenshots_grid img{
     width:100%;
 }
-.requirement_table, .requirement_table td{
-    border:solid #1B2838 2px;
+
+.requirement_table, 
+.requirement_table td,
+.requirement_switch{
+    border-top:solid #1B2838 2px;
     width: 100%;
 }
-.requirement_table{
-    background-color:rgba(255, 255, 255, 0.1);
+
+.requirement_table,
+#description,
+.requirement_switch
+{
+    background-color:#323E4C;
+    filter: drop-shadow(0px 0px 7px #323E4C);
+}
+
+.requirement_switch{
+    text-align: center;
+    width:100%
+}
+
+.requirement_switch button{
+    padding:10px;
+    margin: 8px 20px 8px 0px;
+}
+
+#description, 
+.requirement_switch{
+    margin-top: 100px;
+}
+
+#description{
+    padding:20px;
+    
+}
+
+#description h1{
+    margin-left: -20px;
+    margin-right: -20px;
+    text-align:center;
+    padding-top:10px;
+    text-decoration: underline;
+}
+#end_of_page_void{
+    padding-top:500px;
+   
 }
