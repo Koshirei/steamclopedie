@@ -147,6 +147,11 @@ function Recherche(props: RechercheProps) {
             setFuzzy(json);
         }
 
+   
+
+        let a : any = document.getElementById("fuzzy_search");
+        a.style.opacity = 1;
+
         query();
     }
 
@@ -180,6 +185,15 @@ function Recherche(props: RechercheProps) {
         }
     }
 
+    useEffect(() => {
+
+        let test : any = document.getElementById('name')?.offsetWidth;
+        document.getElementById("fuzzy_search")!.style.width = test+"px";
+        let a: any = document.getElementById("fuzzy_search");
+        a.style.opacity = 0;
+
+    }, []);
+
     function platformsCheckboxes(e: any) {
         let gcheckbox: any = document.getElementById("gcheckbox");
         // console.log("a");
@@ -199,13 +213,36 @@ function Recherche(props: RechercheProps) {
        
     }
 
+    function blurEvent(e: any) {
+        // let test : any = document.getElementById('name')?.offsetWidth;
+        // document.getElementById("fuzzy_search")!.style.width = test+"px";
+        let a: any = document.getElementById("fuzzy_search");
+        a.style.opacity = 0;
+    }
+
+    function focusEvent(e: any) {
+        // let test : any = document.getElementById('name')?.offsetWidth;
+        // document.getElementById("fuzzy_search")!.style.width = test+"px";
+        let a: any = document.getElementById("fuzzy_search");
+        let b: any = document.getElementById("name");
+
+        console.log(a.value);
+        
+        // 
+        if (b.value != "") {
+            a.style.opacity = 1;
+        }
+
+        
+    }
+
     return (
         <div id="search">
             <form id="form" method="GET">
                 <input type="hidden" name="page" value="1"></input>
 
                 <div id="recherche">
-                    <input autoComplete="off" id="name" type="text" name="name" onKeyUp={fuzzysearch}></input>
+                    <input  autoComplete="off" id="name" type="text" name="name" onKeyUp={fuzzysearch} onBlur={blurEvent} onFocus={focusEvent}></input>
                     <button type="submit" onClick={update}>Submit</button>
                     <a id="toggle_advanced_search" href="#" onClick={toggleAdvancedSearch}>Toggle advanced search</a>
                 </div>

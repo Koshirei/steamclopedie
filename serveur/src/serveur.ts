@@ -198,6 +198,8 @@ app.get("/api/recherche", (req, res) => {
 
             });
 
+            
+
         } else {
             body = await client.search({
                 index: "steam-database",
@@ -307,7 +309,9 @@ app.get("/api/recherche", (req, res) => {
                                 // },
                             ],
                         }
-                    }  
+                    },
+                    
+                    
                 },
             });
         }
