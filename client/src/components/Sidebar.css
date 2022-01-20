@@ -17,6 +17,10 @@
     display: flex;
 }
 
+#sidebar_short-description{
+    text-align: justify;
+}
+
 #review-bar_positive-ratings,
 #review-bar_negative-ratings {
     padding: 4px;

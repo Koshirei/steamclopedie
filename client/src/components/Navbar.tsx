@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <nav>
             <ul className="container">
-                <li><a href="/">Accueil</a></li>
+                <li><a href="/">Homepage</a></li>
             </ul>
         </nav>
     );

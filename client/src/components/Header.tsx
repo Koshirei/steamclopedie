@@ -9,22 +9,7 @@ interface HeaderProps{
 
 function Header(props: HeaderProps) {
 
-    console.log(props.api[0].name);
-    
-
-    function renderPlatforms() {
-        let a: any = props.api[0].platforms?.split(";");
-        
-        console.log(a?.length);
-        if ( a != undefined){
-            console.log(a[0]);
-        }
-        return a?.map((value: any) => {
-            
-            return <p className="game_plateform_inline_block"> {value+", "} </p>;
-        });
-    }
-   
+    console.log(props.api[0].name);   
 
     return (
         <div id="header_block">
@@ -33,9 +18,7 @@ function Header(props: HeaderProps) {
             </div>
 
             <div id="header_block_droite">
-                <h1 className="headline_game_title">{props.api[0].name}</h1>
-                <p className="paragraph_game_header">Released {props.api[0].release_date} -</p>
-                <p className="game_plateforms">For {renderPlatforms()} </p>
+                <h1 className="headline_game_title">{props.api[0].name}</h1>                
             </div>
         </div>
     

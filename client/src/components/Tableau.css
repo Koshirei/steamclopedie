@@ -22,16 +22,16 @@ table {
     color: rgba(255, 255, 255, 0.7);
     border-radius: 4px;
 }
-
+#menu{
+    margin-bottom:10px;
+}
 td, th, td a {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
+    padding : 8px 4px 8px 4px;
 }
 
-td {
-    padding: 4px 0;
-   
-}
+
 
 tr {
     border-bottom: 2px solid #1B2838;

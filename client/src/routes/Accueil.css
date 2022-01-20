@@ -6,4 +6,10 @@ body {
     width: 50%;
     margin: 0 auto;
 }
+#homepage_header h1,
+#homepage_header h4,
+#homepage_header h5{
+    color:white;
+    text-align: center;
+}
 
