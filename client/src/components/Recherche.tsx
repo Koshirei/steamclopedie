@@ -181,6 +181,8 @@ function Recherche(props: RechercheProps) {
 
             if (inputs[i].type === "text") {
                 inputs[i].value = "";
+            }else{
+                inputs[i].checked=false;
             }
         }
     }
@@ -218,6 +220,11 @@ function Recherche(props: RechercheProps) {
         // document.getElementById("fuzzy_search")!.style.width = test+"px";
         let a: any = document.getElementById("fuzzy_search");
         a.style.opacity = 0;
+        setTimeout(function (){
+            a.style.display="none";
+        }, 200);
+        // a.style.display="none";
+        
     }
 
     function focusEvent(e: any) {
@@ -230,7 +237,9 @@ function Recherche(props: RechercheProps) {
         
         // 
         if (b.value != "") {
+            a.style.display="block";
             a.style.opacity = 1;
+            
         }
 
         
@@ -244,7 +253,7 @@ function Recherche(props: RechercheProps) {
                 <div id="recherche">
                     <input  autoComplete="off" id="name" type="text" name="name" onKeyUp={fuzzysearch} onBlur={blurEvent} onFocus={focusEvent}></input>
                     <button type="submit" onClick={update}>Submit</button>
-                    <a id="toggle_advanced_search" href="#" onClick={toggleAdvancedSearch}>Toggle advanced search</a>
+                    <a id="toggle_advanced_search" onClick={toggleAdvancedSearch}>Toggle advanced search</a>
                 </div>
                 {/* name :                    */}
 
@@ -254,9 +263,9 @@ function Recherche(props: RechercheProps) {
 
                 <div id="advanced_search">
                     
-                    Release date :          <input id="release_date" type="date" name="release_date"></input><br></br>
-                    Developer :             <input id="developer" type="text" name="developer"></input><br></br>
-                    Publisher :             <input id="publisher" type="text" name="publisher"></input><br></br>
+                    Release date :          <input id="release_date" type="date" name="release_date"></input><br></br><br/>
+                    Developer :             <input id="developer" type="text" name="developer"></input><br></br><br/>
+                    Publisher :             <input id="publisher" type="text" name="publisher"></input><br></br><br/>
 
                     <input id="gcheckbox" type="hidden" name="platforms" value=""></input>
                     Platforms :             
@@ -267,11 +276,12 @@ function Recherche(props: RechercheProps) {
                                                 <li><label><input type="checkbox"  value="linux" onClick={platformsCheckboxes}></input>Linux</label></li>
                                                 <li><label><input  type="checkbox" value="mac" onClick={platformsCheckboxes}></input>Mac</label></li>
                                             </ul>
-                                            <br></br>
+                                            <br></br><br/>
 
                     Minimum age :           
 
                     <ul>
+                        <li><label><input type="radio"  value="0" name="required_age"></input>For Everyone</label></li>
                         <li><label><input type="radio"  value="3" name="required_age"></input>3</label></li>
                         <li><label><input type="radio"  value="7" name="required_age"></input>7</label></li>
                         <li><label><input type="radio"  value="12" name="required_age"></input>12</label></li>

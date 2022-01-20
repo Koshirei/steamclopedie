@@ -18,7 +18,7 @@ function Accueil() {
             <Navbar />
             <div id="homepage_header">
                 <h1>Welcome to Steamclopedia!</h1>
-                <h4>The only website you'll ever need to find information about games!</h4>
+                <h4>The only website you'll ever need to find informations about your favorite games!</h4>
                 <h5>Browse throught more than 25,000 games with our advanced searching tool!</h5>
             </div>
             <div className="container">

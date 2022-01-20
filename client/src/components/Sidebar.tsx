@@ -21,16 +21,31 @@ function Sidebar(props: SidebarProps){
 
         positive_ratings.style.width = `${(a / (a + b))*review_bar.offsetWidth}px`;        
     });
-    useEffect(() => {
-        let a: any = document.getElementById("render_developer");
-        a.innerHTML=props.api[0].developer;
-        a.innerHTML=a.innerHTML.replaceAll(";"," - ")
-    });
-    useEffect(() => {
-        let a: any = document.getElementById("render_publisher");
-        a.innerHTML=props.api[0].publisher;
-        a.innerHTML=a.innerHTML.replaceAll(";"," - ")
-    });
+
+    function renderDeveloper() {
+        let a: any = props.api[0].developer?.split(";");
+        
+        console.log(a?.length);
+        if ( a != undefined){
+            console.log(a[0]);
+        }
+        return a?.map((value: any) => {
+            
+            return <p > - {value}&nbsp; </p>; //css dans header.css
+        });
+    }
+    function renderPublisher() {
+        let a: any = props.api[0].publisher?.split(";");
+        
+        console.log(a?.length);
+        if ( a != undefined){
+            console.log(a[0]);
+        }
+        return a?.map((value: any) => {
+            
+            return <p > - {value}&nbsp; </p>; //css dans header.css
+        });
+    }
     
 
     function renderPlatforms() {
@@ -42,7 +57,7 @@ function Sidebar(props: SidebarProps){
         }
         return a?.map((value: any) => {
             
-            return <p className="game_plateform_inline_block"> {value}&nbsp; </p>; //css dans header.css
+            return <p className="game_plateform_inline_block"> - {value}&nbsp; </p>; //css dans header.css
         });
     }
 
@@ -60,6 +75,46 @@ function Sidebar(props: SidebarProps){
         )
     }
 
+    function renderCategories() {
+        let a: any = props.api[0].categories?.split(";");
+        
+        console.log(a?.length);
+        if ( a != undefined){
+            console.log(a[0]);
+        }
+        return a?.map((value: any) => {
+            
+            return <p > - {value}&nbsp; </p>; //css dans header.css
+        });
+    }
+
+    function renderGenres() {
+        let a: any = props.api[0].genres?.split(";");
+        
+        console.log(a?.length);
+        if ( a != undefined){
+            console.log(a[0]);
+        }
+        return a?.map((value: any) => {
+            
+            return <p > - {value}&nbsp; </p>; //css dans header.css
+        });
+    }
+
+    function renderUserTags() {
+        let a: any = props.api[0].steamspy_tags?.split(";");
+        
+        console.log(a?.length);
+        if ( a != undefined){
+            console.log(a[0]);
+        }
+        return a?.map((value: any) => {
+            
+            return <p > - {value}&nbsp; </p>; //css dans header.css
+        });
+    }
+
+
     return (
         <div id="sidebar">
             <div id="sidebar_short-description" className="sidebar_block">
@@ -67,8 +122,8 @@ function Sidebar(props: SidebarProps){
             </div>
 
             <div id="sidebar_developer-publisher" className="sidebar_block">
-                <p>Developer : <div id="render_developer"></div></p><br/>
-                <p>Publisher : <div id="render_publisher"></div></p>
+                <p>Developer : <div >{renderDeveloper()}</div></p><br/>
+                <p>Publisher : <div >{renderPublisher()}</div></p>
             </div>
 
             <div id="sidebar_review-bar" className="sidebar_block">
@@ -80,6 +135,12 @@ function Sidebar(props: SidebarProps){
             <div id="sidebar_date_platform" className="sidebar_block">
                 <p>Release date: <br/> {props.api[0].release_date}</p><br/><br/>
                 <p>Platforms: <br/> {renderPlatforms()}</p>
+            </div>
+
+            <div id="sidebar_date_platform" className="sidebar_block">
+                <p>Categories: <br/> {renderCategories()}</p><br/><br/>
+                <p>Genres: <br/> {renderGenres()}</p><br/><br/>
+                <p>User Tags:{renderUserTags()}</p>
             </div>
         </div>
     );

@@ -13,4 +13,7 @@ export default interface IApiProps {
     publisher: string;
     positive_ratings: string;
     negative_ratings: string;
+    genres:string;
+    categories:string;
+    steamspy_tags:string
 }

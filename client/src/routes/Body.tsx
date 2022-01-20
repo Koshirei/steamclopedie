@@ -34,6 +34,7 @@ function Header(props: BodyProps) {
     useEffect(()=>{
         let t:any=document.getElementById('description');
         t.innerHTML=props.api[0].detailed_description;
+        
     });
     useEffect(()=>{
         {setRequirementPc()}

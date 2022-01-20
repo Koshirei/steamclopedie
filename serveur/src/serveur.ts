@@ -96,7 +96,10 @@ class Server {
                             positive_ratings: value._source.positive_ratings,
                             negative_ratings: value._source.negative_ratings,
                             linux_requirements: value._source.linux_requirements,
-                            movies: value._source.linux_requirements
+                            movies: value._source.linux_requirements,
+                            genres:value._source.genres,
+                            categories:value._source.categories,
+                            steamspy_tags:value._source.steamspy_tags
                         });
                     });
                 }
